@@ -84,7 +84,7 @@ export function Generator({ pack }: Props) {
   return (
     <div className="space-y-10">
       {/* Step 1: Format */}
-      <Section step="01" title="Output format" hint="Pick one or more file formats">
+      <Section step="01" title="Output format" hint="Pick your output format">
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {FORMAT_OPTIONS.map((f) => {
             const on = formats.includes(f.id);
@@ -92,8 +92,7 @@ export function Generator({ pack }: Props) {
               <button
                 key={f.id}
                 onClick={() => {
-                  const next = toggle(formats, f.id);
-                  setFormats(next.length ? next : [f.id]);
+                  setFormats([f.id]);
                 }}
                 className={`group rounded-md border px-4 py-3 text-left transition ${
                   on
