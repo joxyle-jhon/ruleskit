@@ -9,8 +9,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { routeTree } from "./routeTree.gen";
 import "./styles.css";
 
-// Use hash-based history so GitHub Pages never 404s on refresh.
-// URLs will look like: https://joxyle-jhon.github.io/frontend-rules/#/
+// Hash routing entry for static GitHub Pages compatibility.
 const hashHistory = createHashHistory();
 
 const queryClient = new QueryClient();
