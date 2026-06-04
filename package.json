@@ -1,12 +1,10 @@
 {
-  "homepage": "https://<your-username>.github.io/ruleskit",
+  "homepage": "https://joxyle-jhon.github.io/ruleskit",
   "name": "tanstack_start_ts",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "dev": "vite dev",
     "build": "vite build",
     "build:dev": "vite build --mode development",
