@@ -6,26 +6,24 @@ import frontendConfig from "../packs/frontend/pack.config.ts";
 
 const packs: PackConfig[] = [frontendConfig];
 
-const FORMAT_META: Record<
-  OutputFormat,
-  { template: string; filename: string; language: string }
-> = {
-  cursorrules: {
-    template: "cursorrules",
-    filename: ".cursorrules",
-    language: "markdown",
-  },
-  mdc: {
-    template: "mdc",
-    filename: ".cursor/rules/{{pack}}.mdc",
-    language: "markdown",
-  },
-  skill: {
-    template: "skill",
-    filename: "SKILL.md",
-    language: "markdown",
-  },
-};
+const FORMAT_META: Record<OutputFormat, { template: string; filename: string; language: string }> =
+  {
+    cursorrules: {
+      template: "cursorrules",
+      filename: ".cursorrules",
+      language: "markdown",
+    },
+    mdc: {
+      template: "mdc",
+      filename: ".cursor/rules/{{pack}}.mdc",
+      language: "markdown",
+    },
+    skill: {
+      template: "skill",
+      filename: "SKILL.md",
+      language: "markdown",
+    },
+  };
 
 export function getPack(id: string): PackConfig | undefined {
   return packs.find((p) => p.id === id);
@@ -38,7 +36,7 @@ export function getStablePacks(): PackConfig[] {
 function composeBlocks(
   pack: PackConfig,
   frameworkId: string,
-  selectedOptionalBlocks: string[]
+  selectedOptionalBlocks: string[],
 ): string {
   const parts: string[] = [];
 
@@ -67,14 +65,9 @@ export function generate(options: GenerateOptions): GeneratedFile[] {
   const pack = getPack(options.packId);
   if (!pack) throw new Error(`Unknown pack: ${options.packId}`);
 
-  const blocks = composeBlocks(
-    pack,
-    options.frameworkId,
-    options.selectedOptionalBlocks
-  );
+  const blocks = composeBlocks(pack, options.frameworkId, options.selectedOptionalBlocks);
   const frameworkLabel =
-    pack.frameworks.find((f) => f.id === options.frameworkId)?.label ??
-    "Framework-agnostic";
+    pack.frameworks.find((f) => f.id === options.frameworkId)?.label ?? "Framework-agnostic";
 
   const ruleFiles: GeneratedFile[] = options.formats.map((fmt) => {
     const meta = FORMAT_META[fmt];
@@ -92,11 +85,7 @@ export function generate(options: GenerateOptions): GeneratedFile[] {
   return [...ruleFiles, ...extraFiles];
 }
 
-function generateExtras(
-  packId: string,
-  extras: string[],
-  frameworkId: string
-): GeneratedFile[] {
+function generateExtras(packId: string, extras: string[], frameworkId: string): GeneratedFile[] {
   if (packId !== "frontend") return [];
   const files: GeneratedFile[] = [];
 

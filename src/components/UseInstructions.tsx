@@ -39,27 +39,23 @@ export function UseInstructions() {
         <div className="mb-2 font-mono text-xs text-primary">for developers</div>
         <h2 className="text-2xl font-bold">Use ruleskit in your project</h2>
         <p className="mt-3 max-w-3xl text-sm text-muted-foreground leading-relaxed">
-          You do not need this repo. Generate rule files for your stack, drop them in
-          your app root, and commit so your team and AI agents share the same
-          standards.
+          You do not need this repo. Generate rule files for your stack, drop them in your app root,
+          and commit so your team and AI agents share the same standards.
         </p>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
           {/* Web */}
           <div className="rounded-lg border border-border bg-surface p-6">
-            <h3 className="font-mono text-sm font-semibold text-primary">
-              01 — Website
-            </h3>
+            <h3 className="font-mono text-sm font-semibold text-primary">01 — Website</h3>
             <ol className="mt-4 space-y-3 text-sm text-muted-foreground list-decimal list-inside">
               <li>
-                Pick a pack above ({" "}
-                <span className="text-foreground font-mono">frontend</span> is stable
-                today)
+                Pick a pack above ( <span className="text-foreground font-mono">frontend</span> is
+                stable today)
               </li>
               <li>Choose format, framework, and extras</li>
               <li>
-                <span className="text-foreground">Download .zip</span> or copy the CLI
-                command from step 05
+                <span className="text-foreground">Download .zip</span> or copy the CLI command from
+                step 05
               </li>
               <li>Extract into your project root and commit</li>
             </ol>
@@ -67,9 +63,7 @@ export function UseInstructions() {
 
           {/* CLI */}
           <div className="rounded-lg border border-border bg-surface p-6">
-            <h3 className="font-mono text-sm font-semibold text-primary">
-              02 — CLI
-            </h3>
+            <h3 className="font-mono text-sm font-semibold text-primary">02 — CLI</h3>
             <p className="mt-4 text-sm text-muted-foreground">
               From your project directory (Node 18+):
             </p>
@@ -77,9 +71,7 @@ export function UseInstructions() {
               <span className="text-primary">$</span> npx ruleskit init
             </code>
             <p className="mt-4 text-xs text-muted-foreground">
-              Available after the{" "}
-              <span className="font-mono text-foreground">ruleskit</span> package is
-              published to npm. Until then, use the zip download.
+              Installs nothing globally — runs once and writes your rule files.
             </p>
           </div>
         </div>
@@ -144,9 +136,8 @@ export function UseInstructions() {
             generate → commit to git → AI reads rules → optional Husky/ESLint on commit
           </p>
           <p className="mt-3 text-xs text-muted-foreground">
-            If you enable Husky or ESLint extras, install matching devDependencies in
-            your project (<span className="font-mono">eslint</span>,{" "}
-            <span className="font-mono">husky</span>,{" "}
+            If you enable Husky or ESLint extras, install matching devDependencies in your project (
+            <span className="font-mono">eslint</span>, <span className="font-mono">husky</span>,{" "}
             <span className="font-mono">lint-staged</span>, etc.).
           </p>
         </div>

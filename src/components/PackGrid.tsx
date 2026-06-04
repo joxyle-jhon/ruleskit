@@ -24,20 +24,20 @@ export function PackGrid({ packs, selectedId, onSelect }: Props) {
             key={p.id}
             onClick={() => stable && onSelect(p.id)}
             disabled={!stable}
-            className={`group relative flex flex-col items-start gap-3 rounded-lg border p-5 text-left transition ${selected
-              ? "border-primary bg-primary/10 glow-primary"
-              : stable
-                ? "border-border bg-surface hover:border-border-strong hover:bg-surface-elevated"
-                : "cursor-not-allowed border-border bg-surface/40 opacity-60"
-              }`}
+            className={`group relative flex flex-col items-start gap-3 rounded-lg border p-5 text-left transition ${
+              selected
+                ? "border-primary bg-primary/10 glow-primary"
+                : stable
+                  ? "border-border bg-surface hover:border-border-strong hover:bg-surface-elevated"
+                  : "cursor-not-allowed border-border bg-surface/40 opacity-60"
+            }`}
           >
             <div className="flex w-full items-center justify-between">
               <span className="text-2xl text-primary">{ICONS[p.icon] ?? "◆"}</span>
               <span
-                className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${stable
-                  ? "border-success/50 text-success"
-                  : "border-warning/50 text-warning"
-                  }`}
+                className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${
+                  stable ? "border-success/50 text-success" : "border-warning/50 text-warning"
+                }`}
               >
                 {stable ? "stable" : "soon"}
               </span>
