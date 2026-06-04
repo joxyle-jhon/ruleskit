@@ -15,7 +15,17 @@ const config: PackConfig = {
     { id: "angular", label: "Angular", frameworkFile: "angular.md" },
     { id: "vanilla", label: "Vanilla JS", frameworkFile: null },
   ],
-  blocks: ["html", "css", "javascript", "images", "fonts", "network", "web-vitals"],
+  blocks: [
+    "html",
+    "css",
+    "javascript",
+    "comments",
+    "healing",
+    "images",
+    "fonts",
+    "network",
+    "web-vitals",
+  ],
   optionalBlocks: [{ id: "design", label: "Design principles", default: true }],
   extras: [
     { id: "husky", label: "Husky + lint-staged", default: true },

@@ -13,10 +13,11 @@ const blockFiles = import.meta.glob("/packs/*/blocks/**/*.md", {
 }) as Record<string, string>;
 
 // Eager-load every config file (any extension) as raw text
-const configFiles = import.meta.glob(
-  "/packs/*/configs/**/*",
-  { eager: true, query: "?raw", import: "default" }
-) as Record<string, string>;
+const configFiles = import.meta.glob("/packs/*/configs/**/*", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+}) as Record<string, string>;
 
 // Eager-load shared templates as raw
 const templateFiles = import.meta.glob("/core/templates/*.md", {
@@ -45,7 +46,7 @@ export const registry = {
   },
   getBlock(packId: string, blockName: string): string {
     const key = Object.keys(blockFiles).find(
-      (k) => k === `/packs/${packId}/blocks/${blockName}.md`
+      (k) => k === `/packs/${packId}/blocks/${blockName}.md`,
     );
     return key ? blockFiles[key] : "";
   },

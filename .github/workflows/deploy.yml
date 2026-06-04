@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main   # triggers on every push to main
+      - main # triggers on every push to main
   workflow_dispatch: # allows manual trigger from GitHub UI
 
 # Grant GITHUB_TOKEN permission to push to gh-pages branch
