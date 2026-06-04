@@ -37,6 +37,17 @@ export function Generator({ pack }: Props) {
     [pack.id, frameworkId, optionalBlocks, extras, formats]
   );
 
+  // Reset all state when the pack changes
+  useEffect(() => {
+    setFrameworkId(pack.frameworks[0]?.id ?? "agnostic");
+    setOptionalBlocks(
+      (pack.optionalBlocks ?? []).filter((b) => b.default).map((b) => b.id)
+    );
+    setExtras(pack.extras.filter((e) => e.default).map((e) => e.id));
+    setActiveTab(0);
+    setCopied(null);
+  }, [pack.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (activeTab >= files.length) setActiveTab(0);
   }, [files.length, activeTab]);
@@ -60,7 +71,7 @@ export function Generator({ pack }: Props) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `devkit-${pack.id}.zip`;
+    a.download = `ruleskit-${pack.id}.zip`;
     a.click();
     URL.revokeObjectURL(url);
   };

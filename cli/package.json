@@ -1,0 +1,27 @@
+{
+  "name": "ruleskit",
+  "version": "1.0.0",
+  "description": "Generate .cursorrules, .mdc, or SKILL.md files pre-loaded with performance, design, and linting rules for your stack.",
+  "type": "module",
+  "bin": {
+    "ruleskit": "./dist/index.js"
+  },
+  "files": [
+    "dist/",
+    "packs/",
+    "templates/"
+  ],
+  "scripts": {
+    "sync": "node sync-assets.js",
+    "build": "node build.js",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["ai", "rules", "cursorrules", "mdc", "skill", "frontend", "linting", "devtools"],
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}
