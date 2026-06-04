@@ -45,13 +45,13 @@ function Home() {
               v1
             </span>
           </div>
-          <nav className="flex items-center gap-5 text-xs font-mono text-muted-foreground">
-            <a href="#how" className="hover:text-foreground">how it works</a>
-            <a href="#use" className="hover:text-foreground">for developers</a>
-            <a href="#roadmap" className="hover:text-foreground">roadmap</a>
+          <nav className="flex items-center gap-3 sm:gap-5 text-[11px] sm:text-xs font-mono text-muted-foreground">
+            <a href="#how" className="hidden sm:inline hover:text-foreground">how it works</a>
+            <a href="#use" className="hidden sm:inline hover:text-foreground">for developers</a>
+            <a href="#roadmap" className="hidden md:inline hover:text-foreground">roadmap</a>
             <a
               href="https://github.com"
-              className="rounded border border-border px-2.5 py-1 hover:border-border-strong hover:text-foreground"
+              className="rounded border border-border px-2 py-0.5 sm:px-2.5 sm:py-1 hover:border-border-strong hover:text-foreground"
             >
               github
             </a>
@@ -67,25 +67,25 @@ function Home() {
             <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
             v1 — frontend pack ships today
           </div>
-          <h1 className="mt-6 max-w-3xl mx-auto text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="mt-6 max-w-3xl mx-auto text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
             AI rules for every{" "}
             <span className="text-gradient-primary">engineering discipline</span>.
           </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-6 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
             Generate <span className="font-mono text-foreground">.cursorrules</span>,{" "}
             <span className="font-mono text-foreground">.mdc</span>, or{" "}
             <span className="font-mono text-foreground">SKILL.md</span> files
             pre-loaded with performance, design, and linting rules for your stack.
             Drop them in your project. Your AI follows them automatically.
           </p>
-          <div className="mt-10 flex flex-wrap justify-center items-center gap-4">
+          <div className="mt-10 flex flex-wrap justify-center items-center gap-3 sm:gap-4">
             <a
               href="#generator"
-              className="rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground glow-primary hover:opacity-90"
+              className="rounded-md bg-primary px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-primary-foreground glow-primary hover:opacity-90"
             >
               Generate my rules file ↓
             </a>
-            <code className="rounded-md border border-border bg-surface px-4 py-3 text-sm font-mono text-foreground">
+            <code className="rounded-md border border-border bg-surface px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-mono text-foreground">
               <span className="text-primary">$</span> npx ruleskit init
             </code>
           </div>
@@ -95,9 +95,11 @@ function Home() {
       {/* Pack selector */}
       <section id="generator" className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <div className="mb-8 flex items-baseline gap-3">
-            <span className="font-mono text-xs text-primary">00</span>
-            <h2 className="text-2xl font-bold">Pick your pack</h2>
+          <div className="mb-8 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-3">
+            <div className="flex items-baseline gap-3">
+              <span className="font-mono text-xs text-primary">00</span>
+              <h2 className="text-2xl font-bold">Pick your pack</h2>
+            </div>
             <span className="text-xs text-muted-foreground">— each discipline is self-contained</span>
           </div>
           <PackGrid packs={packs} selectedId={selectedId} onSelect={setSelectedId} />
@@ -193,7 +195,7 @@ function Home() {
                   {m.label}
                 </span>
                 {i < arr.length - 1 && (
-                  <span className="text-muted-foreground">→</span>
+                  <span className="text-muted-foreground hidden sm:inline">→</span>
                 )}
               </span>
             ))}
