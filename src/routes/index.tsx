@@ -3,6 +3,7 @@ import { useState } from "react";
 import { registry } from "@/core/registry";
 import { PackGrid } from "@/components/PackGrid";
 import { Generator } from "@/components/Generator";
+import { UseInstructions } from "@/components/UseInstructions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,6 +47,7 @@ function Home() {
           </div>
           <nav className="flex items-center gap-5 text-xs font-mono text-muted-foreground">
             <a href="#how" className="hover:text-foreground">how it works</a>
+            <a href="#use" className="hover:text-foreground">for developers</a>
             <a href="#roadmap" className="hover:text-foreground">roadmap</a>
             <a
               href="https://github.com"
@@ -140,6 +142,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <UseInstructions />
 
       {/* Coverage */}
       <section className="border-b border-border">
