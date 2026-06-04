@@ -5,6 +5,6 @@ module.exports = {
     "vue/no-v-html": "warn",
     "vue/require-v-for-key": "error",
     "vue/no-use-v-if-with-v-for": "error",
-    "vue/component-api-style": ["error", ["script-setup", "composition"]]
-  }
-}
+    "vue/component-api-style": ["error", ["script-setup", "composition"]],
+  },
+};

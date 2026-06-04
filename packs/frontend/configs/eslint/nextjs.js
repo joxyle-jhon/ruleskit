@@ -7,6 +7,6 @@ module.exports = {
     "@next/next/no-css-tags": "error",
     "@next/next/no-page-custom-font": "error",
     "@next/next/google-font-display": "error",
-    "@next/next/no-before-interactive-script-outside-document": "error"
-  }
-}
+    "@next/next/no-before-interactive-script-outside-document": "error",
+  },
+};

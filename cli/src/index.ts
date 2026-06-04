@@ -9,14 +9,14 @@ const VALID_FORMATS: OutputFormat[] = ["cursorrules", "mdc", "skill"];
 // ── Parse CLI arguments ──────────────────────────────────────────────
 const { values } = parseArgs({
   options: {
-    pack:       { type: "string",  short: "p", default: "frontend" },
-    framework:  { type: "string",  short: "f", default: "agnostic" },
-    format:     { type: "string",  short: "F", default: "cursorrules" },
-    extras:     { type: "string",  short: "e" },
+    pack: { type: "string", short: "p", default: "frontend" },
+    framework: { type: "string", short: "f", default: "agnostic" },
+    format: { type: "string", short: "F", default: "cursorrules" },
+    extras: { type: "string", short: "e" },
     "no-extras": { type: "boolean", default: false },
-    out:        { type: "string",  short: "o", default: "." },
-    help:       { type: "boolean", short: "h", default: false },
-    version:    { type: "boolean", short: "v", default: false },
+    out: { type: "string", short: "o", default: "." },
+    help: { type: "boolean", short: "h", default: false },
+    version: { type: "boolean", short: "v", default: false },
   },
   allowPositionals: true,
   strict: false,
@@ -67,7 +67,9 @@ const outDir = resolve(process.cwd(), (values.out as string) ?? ".");
 // Validate pack exists
 const pack = getPack(packId);
 if (!pack) {
-  const available = getStablePacks().map((p) => p.id).join(", ");
+  const available = getStablePacks()
+    .map((p) => p.id)
+    .join(", ");
   console.error(`\n  ✗ Unknown pack: "${packId}"`);
   console.error(`    Available packs: ${available}\n`);
   process.exit(1);

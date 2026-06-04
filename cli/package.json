@@ -19,7 +19,16 @@
   "engines": {
     "node": ">=18"
   },
-  "keywords": ["ai", "rules", "cursorrules", "mdc", "skill", "frontend", "linting", "devtools"],
+  "keywords": [
+    "ai",
+    "rules",
+    "cursorrules",
+    "mdc",
+    "skill",
+    "frontend",
+    "linting",
+    "devtools"
+  ],
   "license": "MIT",
   "devDependencies": {
     "esbuild": "^0.25.0"
