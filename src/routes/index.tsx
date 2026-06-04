@@ -5,6 +5,7 @@ import { registry } from "@/core/registry";
 import { PackGrid } from "@/components/PackGrid";
 import { Generator } from "@/components/Generator";
 import { UseInstructions } from "@/components/UseInstructions";
+import { Documentation } from "@/components/Documentation";
 import AmbientGlow from "@/components/AmbientGlow";
 import QuantumNodes from "@/components/QuantumNodes";
 
@@ -55,13 +56,15 @@ function Home() {
             </span>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden sm:flex items-center gap-3 sm:gap-5 text-[11px] sm:text-xs font-mono text-muted-foreground">
             <a href="#how" className="hover:text-foreground">
               how it works
             </a>
             <a href="#use" className="hover:text-foreground">
               for developers
+            </a>
+            <a href="#docs" className="hover:text-foreground">
+              docs
             </a>
             <a href="#roadmap" className="hidden md:inline hover:text-foreground">
               roadmap
@@ -101,6 +104,13 @@ function Home() {
                 className="hover:text-primary transition-colors py-1 border-b border-border/40"
               >
                 for developers
+              </a>
+              <a
+                href="#docs"
+                onClick={() => setIsMenuOpen(false)}
+                className="hover:text-primary transition-colors py-1 border-b border-border/40"
+              >
+                docs
               </a>
               <a
                 href="#roadmap"
@@ -232,6 +242,8 @@ function Home() {
       </section>
 
       <UseInstructions />
+
+      <Documentation />
 
       {/* Coverage */}
       <section className="border-b border-border">
