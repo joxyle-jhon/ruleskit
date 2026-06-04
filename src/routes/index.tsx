@@ -7,13 +7,13 @@ import { Generator } from "@/components/Generator";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "devkit — AI rules for every engineering discipline" },
+      { title: "ruleskit — AI rules for every engineering discipline" },
       {
         name: "description",
         content:
           "Generate .cursorrules, .mdc, or SKILL.md files pre-loaded with performance, design, and linting rules for your stack.",
       },
-      { property: "og:title", content: "devkit — AI rules for engineers" },
+      { property: "og:title", content: "ruleskit — AI rules for engineers" },
       {
         property: "og:description",
         content:
@@ -38,7 +38,7 @@ function Home() {
           <div className="flex items-center gap-2">
             <span className="font-mono text-lg font-bold text-primary">▲</span>
             <span className="font-mono text-sm font-semibold tracking-tight">
-              devkit
+              ruleskit
             </span>
             <span className="ml-2 rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
               v1
@@ -84,7 +84,7 @@ function Home() {
               Generate my rules file ↓
             </a>
             <code className="rounded-md border border-border bg-surface px-4 py-3 text-sm font-mono text-foreground">
-              <span className="text-primary">$</span> npx devkit init
+              <span className="text-primary">$</span> npx ruleskit init
             </code>
           </div>
         </div>
@@ -122,7 +122,7 @@ function Home() {
             {[
               "Pick your pack and framework",
               "Toggle extras: design rules, hooks, linting",
-              "Download the zip or run npx devkit init",
+              "Download the zip or run npx ruleskit init",
               "Your agent and pipeline follow them automatically",
             ].map((step, i) => (
               <div
