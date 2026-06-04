@@ -10,10 +10,11 @@
     "dev": "vite dev",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "build:spa": "vite build --config vite.spa.config.ts",
     "preview": "vite preview",
     "lint": "eslint .",
+    "predeploy": "npm run build:spa",
     "deploy": "gh-pages -d dist",
-    "predeploy": "npm run build",
     "format": "prettier --write ."
   },
   "dependencies": {
