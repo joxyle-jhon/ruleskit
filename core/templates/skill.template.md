@@ -21,3 +21,5 @@ For each issue found:
 
 Lead with 🔴 issues. Skip domains with no issues.
 Never give generic advice — always tie findings to the actual code provided.
+Enforce minimal comments; comments should only be placed at the top of functions if absolutely necessary, never inline or scattered throughout.
+

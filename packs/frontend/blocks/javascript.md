@@ -12,3 +12,4 @@
 - Use requestIdleCallback or requestAnimationFrame for non-urgent DOM updates
 - Prefer event delegation over attaching listeners to many individual elements
 - Debounce or throttle scroll, resize, and input event handlers
+- Keep comments to a minimum; place comments ONLY at the top of functions if needed, never inline.

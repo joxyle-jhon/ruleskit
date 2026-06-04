@@ -16,3 +16,5 @@ alwaysApply: true
 - Severity: 🔴 High | 🟡 Medium | 🟢 Low
 - Always include a concrete code fix
 - Lead with highest impact issues
+- Enforce minimal comments; comments should only be placed at the top of functions if absolutely necessary, never inline or scattered throughout.
+

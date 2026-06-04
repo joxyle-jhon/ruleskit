@@ -37,7 +37,6 @@ export function Generator({ pack }: Props) {
     [pack.id, frameworkId, optionalBlocks, extras, formats]
   );
 
-  // Reset all state when the pack changes
   useEffect(() => {
     setFrameworkId(pack.frameworks[0]?.id ?? "agnostic");
     setOptionalBlocks(

@@ -17,3 +17,5 @@ When reviewing code:
 3. Always provide a concrete fix with code
 4. Lead with highest impact issues first
 5. Reference the specific line or pattern — no generic feedback
+6. Enforce minimal comments; comments should only be placed at the top of functions if absolutely necessary, never inline or scattered throughout.
+
