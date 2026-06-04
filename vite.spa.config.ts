@@ -7,8 +7,8 @@ import react from "@vitejs/plugin-react";
 // Does NOT use tanstackStart() because GitHub Pages can't run a Node server.
 export default defineConfig({
   // Must match the GitHub repo name so asset paths resolve correctly.
-  // Live URL: https://joxyle-jhon.github.io/frontend-rules/
-  base: "/frontend-rules/",
+  // Live URL: https://joxyle-jhon.github.io/ruleskit/
+  base: "/ruleskit/",
 
   plugins: [
     tsconfigPaths({
