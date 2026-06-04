@@ -326,7 +326,7 @@ export function Documentation() {
 
         <div className="mt-12 flex flex-col gap-8 md:flex-row md:items-start">
           {/* Tabs Sidebar */}
-          <div className="flex gap-2 overflow-x-auto md:w-64 md:flex-col md:overflow-x-visible shrink-0 pb-4 md:pb-0">
+          <div className="flex gap-2 overflow-x-auto md:w-64 md:flex-col md:overflow-x-visible shrink-0 pb-4 md:pb-0 md:sticky md:top-24">
             {sections.map((sec) => {
               const on = sec.id === activeTab;
               return (
