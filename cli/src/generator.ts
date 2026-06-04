@@ -1,10 +1,10 @@
-import { registry } from "./registry";
-import type {
-  GenerateOptions,
-  GeneratedFile,
-  OutputFormat,
-  PackConfig,
-} from "./types";
+import { registry } from "./registry.js";
+import type { PackConfig, OutputFormat, GeneratedFile, GenerateOptions } from "./types.js";
+
+// Import pack configs
+import frontendConfig from "../packs/frontend/pack.config.ts";
+
+const packs: PackConfig[] = [frontendConfig];
 
 const FORMAT_META: Record<
   OutputFormat,
@@ -26,6 +26,14 @@ const FORMAT_META: Record<
     language: "markdown",
   },
 };
+
+export function getPack(id: string): PackConfig | undefined {
+  return packs.find((p) => p.id === id);
+}
+
+export function getStablePacks(): PackConfig[] {
+  return packs.filter((p) => p.status === "stable");
+}
 
 function composeBlocks(
   pack: PackConfig,
@@ -56,7 +64,7 @@ function composeBlocks(
 }
 
 export function generate(options: GenerateOptions): GeneratedFile[] {
-  const pack = registry.getPack(options.packId);
+  const pack = getPack(options.packId);
   if (!pack) throw new Error(`Unknown pack: ${options.packId}`);
 
   const blocks = composeBlocks(
@@ -153,10 +161,4 @@ function generateExtras(
   }
 
   return files;
-}
-
-export function buildCliCommand(opts: GenerateOptions): string {
-  const formats = opts.formats.length === 3 ? "all" : opts.formats.join(",");
-  const extras = opts.extras.length ? `--extras ${opts.extras.join(",")}` : "--no-extras";
-  return `npx ruleskit init --pack ${opts.packId} --framework ${opts.frameworkId} --format ${formats} ${extras}`;
 }

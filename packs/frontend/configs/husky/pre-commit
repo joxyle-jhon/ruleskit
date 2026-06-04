@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-echo "devkit: running pre-commit checks..."
+echo "ruleskit: running pre-commit checks..."
 npx lint-staged

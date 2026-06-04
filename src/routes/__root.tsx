@@ -7,10 +7,10 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+
 
 function NotFoundComponent() {
   return (
@@ -37,9 +37,7 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
+  
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -77,16 +75,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "devkit generates downloadable AI coding rules, best practices, and dev workflow configs." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "devkit generates downloadable AI coding rules, best practices, and dev workflow configs." },
+      { title: "ruleskit — AI rules for every engineering discipline" },
+      { name: "description", content: "Generate .cursorrules, .mdc, or SKILL.md files pre-loaded with performance, design, and linting rules for your stack." },
+      { property: "og:title", content: "ruleskit — AI rules for engineers" },
+      { property: "og:description", content: "Drop in performance, design, and linting rules so your AI coding agent follows them automatically." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "devkit generates downloadable AI coding rules, best practices, and dev workflow configs." },
+      { name: "twitter:title", content: "ruleskit — AI rules for every engineering discipline" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
