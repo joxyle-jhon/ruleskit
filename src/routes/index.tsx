@@ -62,23 +62,23 @@ function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border bg-grid">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background pointer-events-none" />
-        <div className="relative mx-auto max-w-6xl px-6 py-24 sm:py-32">
+        <div className="relative mx-auto max-w-6xl px-6 py-24 sm:py-32 flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs font-mono text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
             v1 — frontend pack ships today
           </div>
-          <h1 className="mt-6 max-w-3xl text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="mt-6 max-w-3xl mx-auto text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
             AI rules for every{" "}
             <span className="text-gradient-primary">engineering discipline</span>.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed">
             Generate <span className="font-mono text-foreground">.cursorrules</span>,{" "}
             <span className="font-mono text-foreground">.mdc</span>, or{" "}
             <span className="font-mono text-foreground">SKILL.md</span> files
             pre-loaded with performance, design, and linting rules for your stack.
             Drop them in your project. Your AI follows them automatically.
           </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+          <div className="mt-10 flex flex-wrap justify-center items-center gap-4">
             <a
               href="#generator"
               className="rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground glow-primary hover:opacity-90"
