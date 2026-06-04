@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BookOpen, ShieldAlert, Award, FileText, CheckCircle2 } from "lucide-react";
+import { BookOpen, ShieldAlert, Award, FileText, CheckCircle2, Terminal } from "lucide-react";
 
 interface DocSection {
   id: string;
@@ -202,6 +202,110 @@ export function Documentation() {
               <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
                 Structured for background autonomous agents, pipeline workflows, or non-Cursor engines (like Cline or custom LangChain/LlamaIndex agents). Employs strict system role-play syntax and structured prompt templates.
               </p>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: "usecases",
+      label: "CLI & Use Cases",
+      icon: <Terminal className="h-4 w-4" />,
+      title: "CLI Command Reference & Core Use Cases",
+      subtitle: "Commands parameters, options, and common project setups",
+      content: (
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-sm font-semibold mb-3">CLI Options Reference</h3>
+            <p className="text-xs text-muted-foreground mb-4">
+              Execute <code className="font-mono bg-surface px-1 py-0.5 text-foreground">npx ruleskit init [options]</code> to configure rules. Available parameters:
+            </p>
+            <div className="overflow-x-auto rounded-md border border-border bg-surface/30">
+              <table className="w-full text-left text-[11px] font-mono text-muted-foreground">
+                <thead>
+                  <tr className="border-b border-border bg-surface-elevated/40 text-foreground text-xs">
+                    <th className="px-3 py-2">Option</th>
+                    <th className="px-3 py-2">Values</th>
+                    <th className="px-3 py-2">Default</th>
+                    <th className="px-3 py-2">Description</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/60">
+                  <tr>
+                    <td className="px-3 py-2 text-foreground font-semibold">-p, --pack</td>
+                    <td className="px-3 py-2">frontend, backend, mobile, devops</td>
+                    <td className="px-3 py-2">frontend</td>
+                    <td className="px-3 py-2">Discipline pack ruleset template</td>
+                  </tr>
+                  <tr>
+                    <td className="px-3 py-2 text-foreground font-semibold">-f, --framework</td>
+                    <td className="px-3 py-2">agnostic, nextjs, nuxt, sveltekit, angular</td>
+                    <td className="px-3 py-2">agnostic</td>
+                    <td className="px-3 py-2">Add framework specific hooks / rules</td>
+                  </tr>
+                  <tr>
+                    <td className="px-3 py-2 text-foreground font-semibold">-F, --format</td>
+                    <td className="px-3 py-2">cursorrules, mdc, skill, all</td>
+                    <td className="px-3 py-2">cursorrules</td>
+                    <td className="px-3 py-2">Rule output format file types</td>
+                  </tr>
+                  <tr>
+                    <td className="px-3 py-2 text-foreground font-semibold">-e, --extras</td>
+                    <td className="px-3 py-2">husky, eslint, stylelint, prettier, lighthouse</td>
+                    <td className="px-3 py-2">none</td>
+                    <td className="px-3 py-2">Extra config files to write on disk</td>
+                  </tr>
+                  <tr>
+                    <td className="px-3 py-2 text-foreground font-semibold">--no-extras</td>
+                    <td className="px-3 py-2">boolean</td>
+                    <td className="px-3 py-2">false</td>
+                    <td className="px-3 py-2">Skip all extra lint/husky helper configs</td>
+                  </tr>
+                  <tr>
+                    <td className="px-3 py-2 text-foreground font-semibold">-o, --out</td>
+                    <td className="px-3 py-2">path directory</td>
+                    <td className="px-3 py-2">.</td>
+                    <td className="px-3 py-2">Target directory to place rules</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="border-t border-border/60 my-6"></div>
+
+          <div>
+            <h3 className="text-sm font-semibold mb-3">Key Use Case Setups</h3>
+            <div className="space-y-4">
+              <div className="rounded-lg border border-border bg-surface p-4">
+                <h4 className="font-mono text-xs font-bold text-foreground">1. Agnostic Project-wide Baseline</h4>
+                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                  Fast setup for small teams using vanilla JS/HTML or general tools. Restricts formatting and comments project-wide.
+                </p>
+                <code className="mt-2 block rounded bg-background/60 px-3 py-2 font-mono text-[11px] text-foreground">
+                  $ npx ruleskit init --pack frontend --framework agnostic --format cursorrules --no-extras
+                </code>
+              </div>
+
+              <div className="rounded-lg border border-border bg-surface p-4">
+                <h4 className="font-mono text-xs font-bold text-foreground">2. Production Next.js Suite (Full Extras)</h4>
+                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                  Best for enterprise Next.js stacks. Generates modular .mdc rules and configures git hooks, Prettier, ESLint, and lighthouse parameters.
+                </p>
+                <code className="mt-2 block rounded bg-background/60 px-3 py-2 font-mono text-[11px] text-foreground">
+                  $ npx ruleskit init --pack frontend --framework nextjs --format mdc --extras husky,eslint,prettier,lighthouse
+                </code>
+              </div>
+
+              <div className="rounded-lg border border-border bg-surface p-4">
+                <h4 className="font-mono text-xs font-bold text-foreground">3. Agent Orchestrators & background workflows</h4>
+                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                  Generate agentic SKILL.md specs for pipeline workers, Github Actions agents, or terminal coding prompts.
+                </p>
+                <code className="mt-2 block rounded bg-background/60 px-3 py-2 font-mono text-[11px] text-foreground">
+                  $ npx ruleskit init --pack frontend --format skill
+                </code>
+              </div>
             </div>
           </div>
         </div>
