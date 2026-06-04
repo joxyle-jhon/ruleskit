@@ -8,6 +8,7 @@ import { UseInstructions } from "@/components/UseInstructions";
 import { Documentation } from "@/components/Documentation";
 import AmbientGlow from "@/components/AmbientGlow";
 import QuantumNodes from "@/components/QuantumNodes";
+import IcebergIllustration from "@/components/IcebergIllustration";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -134,7 +135,8 @@ function Home() {
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0 z-0 opacity-40">
+        {/* Background Network Nodes */}
+        <div className="absolute inset-0 z-0 opacity-20">
           <QuantumNodes
             mode="grid"
             backgroundColor="transparent"
@@ -161,16 +163,61 @@ function Home() {
             pauseWhenOffscreen={true}
           />
         </div>
-        <div className="relative mx-auto max-w-6xl px-6 py-24 sm:py-32 flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs font-mono text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
-            v1 — frontend pack ships today
+
+        {/* Iceberg Illustration Background */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-30 sm:opacity-35 overflow-hidden">
+          <div className="w-full max-w-[650px] transform translate-y-8 sm:translate-y-12">
+            <IcebergIllustration />
           </div>
-          <h1 className="mt-6 max-w-3xl mx-auto text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-            AI rules for every <span className="text-gradient-primary">engineering discipline</span>
-            .
-          </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-32 flex flex-col items-center text-center">
+          {/* Crystalline Ice Shard Badge */}
+          <div className="relative group inline-flex items-center gap-3 border border-border/80 bg-surface/30 px-4 py-1.5 text-xs font-mono text-muted-foreground transition-all duration-300 hover:border-primary/50 hover:text-foreground cursor-default [clip-path:polygon(0_0,calc(100%-8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%-8px))]">
+            {/* Ambient inner glow */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            {/* Iceberg Badge Icon */}
+            <div className="flex items-center">
+              <svg className="w-4 h-4 text-primary fill-none stroke-current" viewBox="0 0 24 24">
+                {/* Peak */}
+                <path d="M12 2L7 11H17L12 2Z" strokeWidth="1.5" className="text-primary animate-pulse" />
+                {/* Waterline */}
+                <line x1="4" y1="12" x2="20" y2="12" strokeWidth="1" className="text-accent/60" />
+                {/* Submerged Base */}
+                <path d="M7 13L5 18L12 22L19 18L17 13H7Z" strokeWidth="1.5" className="text-accent opacity-60 group-hover:opacity-100 group-hover:text-primary transition-all duration-300" />
+              </svg>
+            </div>
+            
+            <span className="flex items-center gap-1.5">
+              <span className="text-primary font-bold">ICEBERG //</span> 
+              v1 — frontend pack ships today
+            </span>
+          </div>
+
+          {/* Iceberg Themed Heading */}
+          <div className="relative mt-8 w-full max-w-4xl mx-auto flex flex-col items-center">
+            {/* Above-Water Peak Text */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
+              AI rules for every
+            </h1>
+            
+            {/* The Waterline Divider */}
+            <div className="relative w-full max-w-xl my-5 sm:my-7 h-[1px] flex items-center justify-center">
+              {/* Glowing gradients */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/50 to-transparent blur-[1px]" />
+              <div className="absolute w-[85%] h-[2px] bg-gradient-to-r from-transparent via-accent/80 to-transparent" />
+              {/* Diamond crest */}
+              <div className="absolute -top-1 w-2.5 h-2.5 rotate-45 border border-primary bg-background shadow-[0_0_8px_var(--color-primary)] animate-pulse" />
+            </div>
+            
+            {/* Submerged Deep Base Text */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-primary">
+              engineering discipline.
+            </h1>
+          </div>
+
+          <p className="mt-8 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
             Generate <span className="font-mono text-foreground">.cursorrules</span>,{" "}
             <span className="font-mono text-foreground">.mdc</span>, or{" "}
             <span className="font-mono text-foreground">SKILL.md</span> files pre-loaded with

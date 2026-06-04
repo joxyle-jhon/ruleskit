@@ -34,6 +34,8 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --animate-drift: drift 25s ease-in-out infinite;
   --animate-drift-slow: drift-reverse 35s ease-in-out infinite;
+  --animate-iceberg-float: iceberg-float 10s ease-in-out infinite;
+  --animate-water-ripple: water-ripple 6s ease-in-out infinite;
 }
 
 :root {
@@ -87,7 +89,7 @@
     background-size: 32px 32px;
   }
   .text-gradient-primary {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: linear-gradient(135deg, var(--success), var(--success));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -117,5 +119,25 @@
   }
   50% {
     transform: translate(-40px, 40px) scale(1.15);
+  }
+}
+
+@keyframes iceberg-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.4deg);
+  }
+}
+
+@keyframes water-ripple {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scaleX(1.015);
   }
 }
