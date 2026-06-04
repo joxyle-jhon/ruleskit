@@ -3,6 +3,6 @@ module.exports = {
   rules: {
     "svelte/no-unused-svelte-ignore": "error",
     "svelte/valid-compile": "error",
-    "svelte/no-at-html-tags": "warn"
-  }
-}
+    "svelte/no-at-html-tags": "warn",
+  },
+};

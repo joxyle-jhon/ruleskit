@@ -45,26 +45,26 @@ npx ruleskit init -o ./my-app
 
 #### CLI options
 
-| Flag | Description | Default |
-|------|-------------|---------|
-| `-p, --pack` | Pack id (`frontend`) | `frontend` |
-| `-f, --framework` | `agnostic`, `nextjs`, `nuxt`, `sveltekit`, `angular`, `vanilla` | `agnostic` |
-| `-F, --format` | `cursorrules`, `mdc`, `skill`, or `all` (comma-separated) | `cursorrules` |
-| `-e, --extras` | `husky`, `eslint`, `stylelint`, `prettier`, `lighthouse` | pack defaults |
-| `--no-extras` | Skip all extra config files | — |
-| `-o, --out` | Output directory | `.` (cwd) |
-| `-h, --help` | Show help | — |
-| `-v, --version` | Show version | — |
+| Flag              | Description                                                     | Default       |
+| ----------------- | --------------------------------------------------------------- | ------------- |
+| `-p, --pack`      | Pack id (`frontend`)                                            | `frontend`    |
+| `-f, --framework` | `agnostic`, `nextjs`, `nuxt`, `sveltekit`, `angular`, `vanilla` | `agnostic`    |
+| `-F, --format`    | `cursorrules`, `mdc`, `skill`, or `all` (comma-separated)       | `cursorrules` |
+| `-e, --extras`    | `husky`, `eslint`, `stylelint`, `prettier`, `lighthouse`        | pack defaults |
+| `--no-extras`     | Skip all extra config files                                     | —             |
+| `-o, --out`       | Output directory                                                | `.` (cwd)     |
+| `-h, --help`      | Show help                                                       | —             |
+| `-v, --version`   | Show version                                                    | —             |
 
 > **Note:** `npx ruleskit` works globally once the [`ruleskit`](https://www.npmjs.com/package/ruleskit) package is published. Until then, use the website zip or build the CLI from `cli/` (see below).
 
 ### What you get
 
-| Output | Purpose |
-|--------|---------|
-| `.cursorrules` | Legacy Cursor project rules |
+| Output                     | Purpose                                   |
+| -------------------------- | ----------------------------------------- |
+| `.cursorrules`             | Legacy Cursor project rules               |
 | `.cursor/rules/<pack>.mdc` | Cursor rules with globs and `alwaysApply` |
-| `SKILL.md` | Agent skill format for compatible tools |
+| `SKILL.md`                 | Agent skill format for compatible tools   |
 
 **Optional extras** (when enabled): `.husky/pre-commit`, `.husky/pre-push`, `eslint.config.js`, `.stylelintrc.js`, `.prettierrc.js`, `.lintstagedrc.js`, `.lighthouserc.json`.
 
@@ -83,12 +83,12 @@ If you enable Husky/ESLint extras, install the matching devDependencies in your 
 
 ### Packs
 
-| Pack | Status |
-|------|--------|
-| Frontend | **Stable** |
-| Backend | Coming soon |
-| DevOps | Coming soon |
-| Mobile | Coming soon |
+| Pack     | Status      |
+| -------- | ----------- |
+| Frontend | **Stable**  |
+| Backend  | Coming soon |
+| DevOps   | Coming soon |
+| Mobile   | Coming soon |
 
 ---
 
