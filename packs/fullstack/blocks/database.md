@@ -1,9 +1,21 @@
-# Database & Caching Hygiene
+# Database
 
-- **Database Hygiene**:
-  - Write optimized, performant database queries. Avoid N+1 query problems by using eager loading.
-  - Implement indexes on columns that are frequently filtered or used in JOIN clauses.
-  - Use database transactions when performing multiple write operations that must succeed or fail together.
-- **Caching Strategies**:
-  - Implement Redis or Memcached caching for heavy queries or static database configurations.
-  - Set appropriate TTL (Time To Live) and cache eviction policies to avoid stale data.
+- Prefer normalized schemas.
+- Add indexes for frequently queried columns.
+- Avoid N+1 queries.
+- Use eager loading when appropriate.
+- Use transactions for related write operations.
+- Never use `SELECT *` in production queries.
+- Prefer migrations over manual schema edits.
+- Add foreign key constraints where appropriate.
+- Optimize expensive queries.
+- Soft delete only when business requirements justify it.
+
+# Caching
+
+- Cache expensive queries.
+- Cache frequently requested static data.
+- Use Redis or Memcached where appropriate.
+- Configure sensible TTL values.
+- Invalidate caches when underlying data changes.
+- Avoid stale cache issues.
