@@ -70,5 +70,20 @@ function syncTemplates() {
   console.log("✓ Synced templates/ from core/templates");
 }
 
+function syncMetadataFiles() {
+  const licenseSrc = join(REPO_ROOT, "LICENSE");
+  const readmeSrc = join(REPO_ROOT, "README.md");
+  
+  if (existsSync(licenseSrc)) {
+    cpSync(licenseSrc, join(CLI_ROOT, "LICENSE"));
+    console.log("✓ Copied LICENSE from repo root");
+  }
+  if (existsSync(readmeSrc)) {
+    cpSync(readmeSrc, join(CLI_ROOT, "README.md"));
+    console.log("✓ Copied README.md from repo root");
+  }
+}
+
 syncPacks();
 syncTemplates();
+syncMetadataFiles();
