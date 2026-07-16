@@ -142,4 +142,32 @@ describe("ruleskit CLI integration tests", () => {
       rmSync(tempDir, { recursive: true, force: true });
     }
   });
+
+  test("doctor command fails when no rule files are present", () => {
+    const tempDir = mkdtempSync(join(tmpdir(), "ruleskit-test-"));
+    try {
+      const result = runCLI(["doctor"], tempDir);
+      assert.strictEqual(result.status, 1);
+      assert.match(result.stdout, /✗ Rule Files Existence/);
+      assert.match(result.stdout, /No AI rules files found/);
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  test("doctor command passes when rules are correctly present", () => {
+    const tempDir = mkdtempSync(join(tmpdir(), "ruleskit-test-"));
+    try {
+      // First generate frontend rules
+      runCLI(["--pack", "frontend", "--framework", "agnostic", "--format", "cursorrules"], tempDir);
+      
+      // Run doctor
+      const result = runCLI(["doctor"], tempDir);
+      assert.strictEqual(result.status, 0);
+      assert.match(result.stdout, /✓ Rule Files Existence/);
+      assert.match(result.stdout, /Found rule files: \.cursorrules/);
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
 });
