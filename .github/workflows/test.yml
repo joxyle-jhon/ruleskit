@@ -33,4 +33,4 @@ jobs:
           cd cli
           node -v
           npm -v
-          npm test
+          npm test > test-output.log 2>&1 || (cat test-output.log && exit 1)
