@@ -14,7 +14,8 @@
   "scripts": {
     "sync": "node sync-assets.js",
     "build": "node build.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "node build.js && npx esbuild tests/cli.test.ts --bundle --platform=node --format=esm --outfile=dist-tests/cli.test.js && node --test dist-tests/cli.test.js"
   },
   "engines": {
     "node": ">=18"
