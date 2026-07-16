@@ -191,7 +191,7 @@ function Home() {
             
             <span className="flex items-center gap-1.5">
               <span className="text-primary font-bold">ICEBERG //</span>{" "}
-              v2 — backend pack ships today
+              v2 — full-stack pack is now live
             </span>
           </div>
 
@@ -299,6 +299,7 @@ function Home() {
           <div className="mt-4 flex gap-2 font-mono text-xs">
             <span className="rounded border border-success/40 bg-success/5 px-2 py-0.5 text-success">frontend pack</span>
             <span className="rounded border border-primary/40 bg-primary/5 px-2 py-0.5 text-primary">backend pack</span>
+            <span className="rounded border border-accent/40 bg-accent/5 px-2 py-0.5 text-accent">full-stack pack</span>
           </div>
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {[
@@ -340,8 +341,9 @@ function Home() {
             {[
               { label: "v1 Frontend", state: "shipped" },
               { label: "v2 Backend", state: "shipped" },
-              { label: "v3 DevOps", state: "next" },
-              { label: "v4 Mobile", state: "later" },
+              { label: "v3 Full-Stack", state: "shipped" },
+              { label: "v4 DevOps", state: "next" },
+              { label: "v5 Mobile", state: "later" },
             ].map((m, i, arr) => (
               <span key={m.label} className="flex items-center gap-3">
                 <span
