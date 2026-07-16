@@ -29,7 +29,7 @@ const templateFiles = import.meta.glob("/core/templates/*.md", {
 const packs: PackConfig[] = Object.entries(packModules)
   .map(([path, mod]) => ({ path, config: mod.default }))
   .sort((a, b) => {
-    const order = ["frontend", "backend", "devops", "mobile"];
+    const order = ["frontend", "backend", "fullstack", "devops", "mobile"];
     return order.indexOf(a.config.id) - order.indexOf(b.config.id);
   })
   .map((x) => x.config);

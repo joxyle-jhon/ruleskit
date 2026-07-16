@@ -4,8 +4,9 @@ import type { PackConfig, OutputFormat, GeneratedFile, GenerateOptions } from ".
 // Import pack configs
 import frontendConfig from "../packs/frontend/pack.config.ts";
 import backendConfig from "../packs/backend/pack.config.ts";
+import fullstackConfig from "../packs/fullstack/pack.config.ts";
 
-const packs: PackConfig[] = [frontendConfig, backendConfig];
+const packs: PackConfig[] = [frontendConfig, backendConfig, fullstackConfig];
 
 const FORMAT_META: Record<OutputFormat, { template: string; filename: string; language: string }> =
   {
