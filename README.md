@@ -1,119 +1,136 @@
 # ruleskit
 
-Generate `.cursorrules`, `.mdc`, or `SKILL.md` files pre-loaded with performance, design, and linting rules for your stack. Drop them into your project so your AI coding agent and tooling follow the same standards.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![NPM Version](https://img.shields.io/npm/v/ruleskit.svg)](https://www.npmjs.com/package/ruleskit)
+[![CI Tests Status](https://github.com/joxyle-jhon/frontend-rules/workflows/CI%20Tests/badge.svg)](https://github.com/joxyle-jhon/frontend-rules/actions)
 
-- **Web app:** run the site locally or use the deployed generator
-- **CLI:** `npx ruleskit init` (after the package is published to npm)
+Instantly bootstrap tailored AI agent rules (`.cursorrules`, `.mdc`, `CLAUDE.md`, `SKILL.md`) for your codebase. Ensure that Cursor, Claude Code, Windsurf, and other AI coding assistants adhere strictly to your project's performance, design, and linter standards.
+
+- 💻 **CLI:** Zero-config stack detection (`npx ruleskit init`)
+- 🌐 **Web App:** Visual rules builder at [ruleskit.dev](https://ruleskit.dev)
+- 🩺 **Doctor:** Automated rules setup verification (`npx ruleskit doctor`)
 
 ---
 
-## For developers (using ruleskit in your project)
+## ⚡ Quick Start
 
-You do not need this repository. Pick a pack, generate files, and commit them to your app repo so your whole team shares the same rules.
-
-### Option 1 — Website
-
-1. Open the ruleskit generator (deployed site or `pnpm run dev` locally).
-2. Select **Frontend** (the only stable pack today).
-3. Choose output format(s), framework, optional blocks, and extras.
-4. **Download the zip** or copy the CLI command shown in the generator.
-5. Extract into your **project root** and commit.
-
-### Option 2 — CLI
-
-From your project directory (requires Node 18+):
+Bootstrap AI rules in your project root with a single, zero-config command:
 
 ```bash
 npx ruleskit init
 ```
 
-Common examples:
+*ruleskit automatically inspects your repository dependencies (e.g. `package.json`, `composer.json`, `go.mod`, etc.) to detect your stack and write the correct files. If stack detection is ambiguous, it will fall back to an interactive prompt.*
+
+### Manual CLI Overrides
+
+Override the auto-detection by specifying flags:
 
 ```bash
-# Next.js + Cursor rules only
-npx ruleskit init --pack frontend --framework nextjs --format mdc --no-extras
+# Generate Claude Code rules for Next.js
+npx ruleskit init --pack frontend --framework nextjs --format claude
 
-# All rule formats + default tooling (husky, eslint, stylelint, prettier)
-npx ruleskit init --pack frontend --framework nextjs --format all
+# Generate all formats for Laravel Backend with custom extras
+npx ruleskit init --pack backend --framework laravel --format all --extras husky,linter
 
-# Rules only, no lint/husky configs
-npx ruleskit init --no-extras
-
-# Write into a specific folder
-npx ruleskit init -o ./my-app
+# Write files to a specific directory without lint/hook configs
+npx ruleskit init --no-extras --out ./my-project-subdirectory
 ```
-
-#### CLI options
-
-| Flag              | Description                                                     | Default       |
-| ----------------- | --------------------------------------------------------------- | ------------- |
-| `-p, --pack`      | Pack id (`frontend`)                                            | `frontend`    |
-| `-f, --framework` | `agnostic`, `nextjs`, `nuxt`, `sveltekit`, `angular`, `vanilla` | `agnostic`    |
-| `-F, --format`    | `cursorrules`, `mdc`, `skill`, or `all` (comma-separated)       | `cursorrules` |
-| `-e, --extras`    | `husky`, `eslint`, `stylelint`, `prettier`, `lighthouse`        | pack defaults |
-| `--no-extras`     | Skip all extra config files                                     | —             |
-| `-o, --out`       | Output directory                                                | `.` (cwd)     |
-| `-h, --help`      | Show help                                                       | —             |
-| `-v, --version`   | Show version                                                    | —             |
-
-> **Note:** `npx ruleskit` works globally once the [`ruleskit`](https://www.npmjs.com/package/ruleskit) package is published. Until then, use the website zip or build the CLI from `cli/` (see below).
-
-### What you get
-
-| Output                     | Purpose                                   |
-| -------------------------- | ----------------------------------------- |
-| `.cursorrules`             | Legacy Cursor project rules               |
-| `.cursor/rules/<pack>.mdc` | Cursor rules with globs and `alwaysApply` |
-| `SKILL.md`                 | Agent skill format for compatible tools   |
-
-**Optional extras** (when enabled): `.husky/pre-commit`, `.husky/pre-push`, `eslint.config.js`, `.stylelintrc.js`, `.prettierrc.js`, `.lintstagedrc.js`, `.lighthouserc.json`.
-
-Rule content includes HTML/CSS/JS performance, images, fonts, network, Web Vitals, optional design principles, and framework-specific guidance when you pick Next.js, Nuxt, etc.
-
-### Workflow
-
-```
-Pick stack on ruleskit → download zip OR run npx ruleskit init
-        → files land in project root → commit to git
-        → Cursor / AI reads .mdc / .cursorrules / SKILL.md
-        → (optional) Husky + ESLint enforce standards on commit
-```
-
-If you enable Husky/ESLint extras, install the matching devDependencies in your project (`eslint`, `husky`, `lint-staged`, etc.).
-
-### Packs
-
-| Pack     | Status      |
-| -------- | ----------- |
-| Frontend | **Stable**  |
-| Backend  | Coming soon |
-| DevOps   | Coming soon |
-| Mobile   | Coming soon |
 
 ---
 
-## Contributing (this repository)
+## 🩺 System Check: `ruleskit doctor`
 
-### Web app
+Ensure that your development environment is correctly enforcing your rules. Run the doctor command in your repository root:
 
 ```bash
-pnpm install
-pnpm run dev      # http://localhost:5173 (port may vary)
-pnpm run build    # production build
+npx ruleskit doctor
 ```
 
-### CLI package
+It performs the following health checks:
+1. **Rule Files Existence:** Verifies that at least one AI rules file is present.
+2. **Git Tracking:** Warns if generated rule files are untracked by Git.
+3. **Husky Config:** Checks if `.husky/pre-commit` exists, is marked executable, and is configured correctly in Git.
+4. **CI Pipeline:** Checks if GitHub Actions is configured to run your linter/formatter on PRs.
 
-The CLI lives in `cli/`. It syncs `packs/` and `core/templates/` from the repo root on every build.
+The doctor output provides a clear checklist with actionable, one-line fixes for any failing item.
+
+---
+
+## 📦 Supported Packs & Frameworks
+
+| Pack | Status | Supported Frameworks / Variants |
+| :--- | :--- | :--- |
+| **Frontend** | Stable | React, Next.js, Nuxt (Vue), SvelteKit, Angular, Vanilla |
+| **Backend** | Stable | Express.js, NestJS, Fastify, Django (Python), Laravel (PHP), Go, Rust |
+| **DevOps** | Coming soon | Docker, Kubernetes, GitHub Actions, Terraform |
+| **Mobile** | Coming soon | React Native, Flutter, Swift, Kotlin |
+
+---
+
+## 🛠️ Supported Output Formats
+
+| Format | Option Label | Target Tooling / AI Agent | Filename |
+| :--- | :--- | :--- | :--- |
+| **Cursor** | `cursorrules` | Cursor IDE (Legacy config) | `.cursorrules` |
+| **Windsurf** | `mdc` | Cursor Rules Folder & Windsurf | `.cursor/rules/<pack>.mdc` |
+| **Agent Skill** | `skill` | Agent Skill (Compatible agents) | `SKILL.md` |
+| **Claude Code** | `claude` | Claude Code (Terminal CLI) | `CLAUDE.md` |
+
+---
+
+## ⚙️ CLI Reference
+
+| Flag | Short | Description | Default |
+| :--- | :--- | :--- | :--- |
+| `--pack` | `-p` | Pack id (e.g. `frontend`, `backend`) | *Auto-detected* |
+| `--framework`| `-f` | Framework variant (e.g. `nextjs`, `laravel`) | *Auto-detected* |
+| `--format` | `-F` | Comma-separated output formats (`cursorrules`, `mdc`, `skill`, `claude`, or `all`) | `cursorrules` |
+| `--extras` | `-e` | Comma-separated config extras | Pack defaults |
+| `--no-extras`| — | Skip creating formatting / linting config files | — |
+| `--out` | `-o` | Output directory | `.` (CWD) |
+| `--help` | `-h` | Show help usage instructions | — |
+| `--version` | `-v` | Show version | — |
+
+### Available Extras
+- **Frontend Pack:** `husky`, `eslint`, `stylelint`, `prettier`, `lighthouse`
+- **Backend Pack:** `husky`, `backend-formatter`, `linter`, `ai-prompt`
+
+---
+
+## 🤝 Contributing (Local Development)
+
+### 1. Web Application
+
+The frontend dashboard is built using TanStack Start:
+
+```bash
+# Install dependencies
+pnpm install
+
+# Run the local development server
+pnpm run dev
+
+# Build for production deployment
+pnpm run build
+```
+
+### 2. CLI Package
+
+The CLI module lives under `cli/`. During local builds, it pulls the latest rules and templates from the root repository:
 
 ```bash
 cd cli
 npm install
+
+# Sync assets and compile the TS codebase to dist/
 npm run build
-node dist/index.js init --pack frontend --framework nextjs --format mdc
+
+# Run local integration tests
+npm test
 ```
 
-Link globally for local testing:
+To test the CLI globally on your machine:
 
 ```bash
 cd cli
@@ -121,27 +138,8 @@ npm link
 ruleskit init --help
 ```
 
-Publish to npm (maintainers):
-
-```bash
-cd cli
-npm publish
-```
-
-### Project layout
-
-```
-frontend-rules/
-├── packs/           # Rule blocks and config templates per discipline
-├── core/            # Generator + templates (used by the web app)
-├── cli/             # Publishable `ruleskit` npm package
-└── src/             # TanStack Start site
-```
-
-Frontend rules are sourced from [roadmap.sh frontend performance best practices](https://roadmap.sh/frontend-performance-best-practices).
-
 ---
 
-## License
+## 📄 License
 
-MIT
+This project is licensed under the [MIT License](LICENSE).
