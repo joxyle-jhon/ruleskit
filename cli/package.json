@@ -14,7 +14,8 @@
   "scripts": {
     "sync": "node sync-assets.js",
     "build": "node build.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "node build.js && node --experimental-strip-types --test tests/**/*.test.ts"
   },
   "engines": {
     "node": ">=18"

@@ -1,0 +1,34 @@
+name: Run CLI Tests
+
+on:
+  push:
+    branches:
+      - main
+      - feat/*
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-cli:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install CLI dependencies
+        run: |
+          cd cli
+          npm ci
+
+      - name: Run CLI test suite
+        run: |
+          cd cli
+          npm test
