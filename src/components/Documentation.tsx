@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BookOpen, ShieldAlert, Award, FileText, CheckCircle2, Terminal } from "lucide-react";
+import { BookOpen, ShieldAlert, Award, FileText, CheckCircle2, Terminal, GitCommit } from "lucide-react";
 
 interface DocSection {
   id: string;
@@ -175,34 +175,62 @@ export function Documentation() {
       label: "Formats Explained",
       icon: <FileText className="h-4 w-4" />,
       title: "Understanding Output Formats",
-      subtitle: "Choose the target format matching your development workflows",
+      subtitle: "Four target formats — each maps to a specific AI tool or workflow",
       content: (
         <div className="space-y-6">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Different AI assistants and orchestration engines consume instructions in different ways. ruleskit targets three standard outputs:
+            Different AI tools read rules from different files. ruleskit generates the exact file each tool expects — drop it in your project root and the agent picks it up automatically.
           </p>
 
           <div className="space-y-4">
             <div className="rounded-lg border border-border bg-surface/50 p-4">
-              <h4 className="font-mono text-xs font-bold text-foreground">1. Cursor Legacy Rules (.cursorrules)</h4>
-              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                Placed at your project root. Contains the entire aggregated collection of rules. It is loaded globally into the context window for all chats and inline generation calls within Cursor.
+              <div className="flex items-center justify-between mb-1">
+                <h4 className="font-mono text-xs font-bold text-foreground">Cursor</h4>
+                <code className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">.cursorrules</code>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Placed at your project root. Loaded globally into Cursor's context window for every chat and inline generation. The original and most widely supported format.
               </p>
             </div>
 
             <div className="rounded-lg border border-border bg-surface/50 p-4">
-              <h4 className="font-mono text-xs font-bold text-foreground">2. Modular Cursor Rules (.cursor/rules/*.mdc)</h4>
-              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                Fine-grained rules mapped to target glob paths. For example, rules targeting only components (<code className="font-mono">src/components/**/*.tsx</code>) or configurations. Helps keep context windows lean by loading only when active files match defined paths.
+              <div className="flex items-center justify-between mb-1">
+                <h4 className="font-mono text-xs font-bold text-foreground">Windsurf</h4>
+                <code className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">.cursor/rules/*.mdc</code>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Modular rules scoped to specific file glob paths. Keeps context windows lean — rules are injected only when the active file matches the defined pattern. Ideal for large multi-team projects.
               </p>
             </div>
 
             <div className="rounded-lg border border-border bg-surface/50 p-4">
-              <h4 className="font-mono text-xs font-bold text-foreground">3. Agent Skill Format (SKILL.md)</h4>
-              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                Structured for background autonomous agents, pipeline workflows, or non-Cursor engines (like Cline or custom LangChain/LlamaIndex agents). Employs strict system role-play syntax and structured prompt templates.
+              <div className="flex items-center justify-between mb-1">
+                <h4 className="font-mono text-xs font-bold text-foreground">Agent Skill</h4>
+                <code className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">SKILL.md</code>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Structured for autonomous agents, pipeline workers, and non-editor AI tools (Cline, LangChain, custom LLM orchestrators). Uses role-play system prompt syntax so the agent knows exactly how to audit and report.
               </p>
             </div>
+
+            <div className="rounded-lg border border-primary/30 bg-primary/5 p-4">
+              <div className="flex items-center justify-between mb-1">
+                <div className="flex items-center gap-2">
+                  <h4 className="font-mono text-xs font-bold text-foreground">Claude Code</h4>
+                  <span className="font-mono text-[10px] text-primary border border-primary/40 rounded px-1.5 py-0.5">new</span>
+                </div>
+                <code className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">CLAUDE.md</code>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Targets Claude Code running in the terminal. Claude natively reads <code className="font-mono text-foreground">CLAUDE.md</code> from the project root at startup — no configuration needed. The generated file uses an enforcement-action framing, instructing Claude to flag violations proactively rather than wait to be asked.
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-md border border-border/60 bg-background/40 px-4 py-3">
+            <p className="text-[11px] font-mono text-muted-foreground">
+              <span className="text-foreground font-semibold">Tip:</span> You can select multiple formats. Each generates a separate file — useful if your team uses both Cursor and Claude Code in the same project.
+            </p>
           </div>
         </div>
       ),
@@ -245,15 +273,15 @@ export function Documentation() {
                   </tr>
                   <tr>
                     <td className="px-3 py-2 text-foreground font-semibold">-F, --format</td>
-                    <td className="px-3 py-2">cursorrules, mdc, skill, all</td>
+                    <td className="px-3 py-2">cursorrules, mdc, skill, claude, all</td>
                     <td className="px-3 py-2">cursorrules</td>
-                    <td className="px-3 py-2">Rule output format file types</td>
+                    <td className="px-3 py-2">Output format — maps to the target AI tool</td>
                   </tr>
                   <tr>
                     <td className="px-3 py-2 text-foreground font-semibold">-e, --extras</td>
-                    <td className="px-3 py-2">husky, eslint, stylelint, prettier, lighthouse</td>
+                    <td className="px-3 py-2">husky, eslint, stylelint, prettier, lighthouse, linter, backend-formatter, ai-prompt</td>
                     <td className="px-3 py-2">none</td>
-                    <td className="px-3 py-2">Extra config files to write on disk</td>
+                    <td className="px-3 py-2">Extra config files to include in the output zip</td>
                   </tr>
                   <tr>
                     <td className="px-3 py-2 text-foreground font-semibold">--no-extras</td>
@@ -278,9 +306,9 @@ export function Documentation() {
             <h3 className="text-sm font-semibold mb-3">Key Use Case Setups</h3>
             <div className="space-y-4">
               <div className="rounded-lg border border-border bg-surface p-4">
-                <h4 className="font-mono text-xs font-bold text-foreground">1. Agnostic Project-wide Baseline</h4>
+                <h4 className="font-mono text-xs font-bold text-foreground">1. Frontend — Agnostic baseline</h4>
                 <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                  Fast setup for small teams using vanilla JS/HTML or general tools. Restricts formatting and comments project-wide.
+                  Minimal setup for any JS/HTML project. Rules only, no extra config files.
                 </p>
                 <code className="mt-2 block rounded bg-background/60 px-3 py-2 font-mono text-[11px] text-foreground">
                   $ npx ruleskit init --pack frontend --framework agnostic --format cursorrules --no-extras
@@ -288,9 +316,9 @@ export function Documentation() {
               </div>
 
               <div className="rounded-lg border border-border bg-surface p-4">
-                <h4 className="font-mono text-xs font-bold text-foreground">2. Production Next.js Suite (Full Extras)</h4>
+                <h4 className="font-mono text-xs font-bold text-foreground">2. Frontend — Next.js full suite</h4>
                 <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                  Best for enterprise Next.js stacks. Generates modular .mdc rules and configures git hooks, Prettier, ESLint, and lighthouse parameters.
+                  Enterprise Next.js setup. Modular Windsurf rules with git hooks, Prettier, ESLint, and Lighthouse budget.
                 </p>
                 <code className="mt-2 block rounded bg-background/60 px-3 py-2 font-mono text-[11px] text-foreground">
                   $ npx ruleskit init --pack frontend --framework nextjs --format mdc --extras husky,eslint,prettier,lighthouse
@@ -298,15 +326,164 @@ export function Documentation() {
               </div>
 
               <div className="rounded-lg border border-border bg-surface p-4">
-                <h4 className="font-mono text-xs font-bold text-foreground">3. Agent Orchestrators & background workflows</h4>
+                <h4 className="font-mono text-xs font-bold text-foreground">3. Backend — Laravel with Claude Code</h4>
                 <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                  Generate agentic SKILL.md specs for pipeline workers, Github Actions agents, or terminal coding prompts.
+                  Backend rules with Laravel-specific additions, output as <code className="font-mono text-foreground">CLAUDE.md</code> for terminal-based Claude Code workflows.
+                </p>
+                <code className="mt-2 block rounded bg-background/60 px-3 py-2 font-mono text-[11px] text-foreground">
+                  $ npx ruleskit init --pack backend --framework laravel --format claude --extras husky
+                </code>
+              </div>
+
+              <div className="rounded-lg border border-border bg-surface p-4">
+                <h4 className="font-mono text-xs font-bold text-foreground">4. Backend — Framework-agnostic, all formats</h4>
+                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                  Stack-agnostic backend rules covering REST, security, database hygiene, and logging. Generates all four format files at once.
+                </p>
+                <code className="mt-2 block rounded bg-background/60 px-3 py-2 font-mono text-[11px] text-foreground">
+                  $ npx ruleskit init --pack backend --framework agnostic --format all --extras husky,linter
+                </code>
+              </div>
+
+              <div className="rounded-lg border border-border bg-surface p-4">
+                <h4 className="font-mono text-xs font-bold text-foreground">5. Agent pipelines — SKILL.md</h4>
+                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                  Generate an agentic <code className="font-mono text-foreground">SKILL.md</code> for pipeline workers, GitHub Actions agents, or custom LLM orchestrators.
                 </p>
                 <code className="mt-2 block rounded bg-background/60 px-3 py-2 font-mono text-[11px] text-foreground">
                   $ npx ruleskit init --pack frontend --format skill
                 </code>
               </div>
             </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: "changelog",
+      label: "Changelog",
+      icon: <GitCommit className="h-4 w-4" />,
+      title: "Changelog",
+      subtitle: "What's new, what changed, and why",
+      content: (
+        <div className="space-y-10">
+          {/* v2 release */}
+          <div>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="font-mono text-xs font-bold text-primary border border-primary/40 rounded px-2 py-0.5">v2.0</span>
+              <h3 className="text-base font-semibold">Backend Pack + Claude Code</h3>
+              <span className="font-mono text-[10px] text-muted-foreground">2026-07-16</span>
+            </div>
+
+            <div className="space-y-6">
+              {/* Change 1 */}
+              <div className="rounded-lg border border-border bg-surface/50 p-4 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                  <h4 className="font-mono text-xs font-bold text-foreground">New output format — Claude Code (<code className="text-primary">CLAUDE.md</code>)</h4>
+                </div>
+                <div className="pl-3.5 space-y-1.5">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">What:</span> A fourth output format targeting Claude Code running in the terminal.
+                  </p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">Why:</span> Claude Code natively reads <code className="font-mono text-foreground">CLAUDE.md</code> from the project root at startup — no configuration required. Terminal-based AI workflows need a dedicated file, separate from editor-specific formats like <code className="font-mono text-foreground">.cursorrules</code>.
+                  </p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">How to use:</span> Select <span className="font-mono text-foreground">Claude Code</span> as the output format in the generator, or pass <code className="font-mono text-foreground">--format claude</code> to the CLI. Drop the generated <code className="font-mono text-foreground">CLAUDE.md</code> into your project root and Claude Code will load it automatically on the next session.
+                  </p>
+                </div>
+              </div>
+
+              {/* Change 2 */}
+              <div className="rounded-lg border border-border bg-surface/50 p-4 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                  <h4 className="font-mono text-xs font-bold text-foreground">Relabeled output format buttons</h4>
+                </div>
+                <div className="pl-3.5 space-y-1.5">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">What:</span> Format selector buttons now show the tool name rather than the file extension.
+                  </p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">Why:</span> Most users don't know what <code className="font-mono text-foreground">.mdc</code> or <code className="font-mono text-foreground">.cursorrules</code> map to. Showing the tool name (Cursor, Windsurf, Agent Skill, Claude Code) removes that ambiguity.
+                  </p>
+                  <div className="mt-2 grid grid-cols-2 gap-1.5 font-mono text-[11px]">
+                    {[
+                      ["Cursor", ".cursorrules"],
+                      ["Windsurf", ".mdc"],
+                      ["Agent Skill", "SKILL.md"],
+                      ["Claude Code", "CLAUDE.md"],
+                    ].map(([label, file]) => (
+                      <div key={label} className="flex items-center justify-between rounded border border-border/60 bg-background/40 px-2 py-1">
+                        <span className="text-foreground">{label}</span>
+                        <span className="text-primary">{file}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Change 3 */}
+              <div className="rounded-lg border border-border bg-surface/50 p-4 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                  <h4 className="font-mono text-xs font-bold text-foreground">Generalized backend extras</h4>
+                </div>
+                <div className="pl-3.5 space-y-1.5">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">What:</span> The backend pack's extras are now stack-agnostic. <span className="line-through text-muted-foreground/50">Laravel Pint (PHP)</span> is replaced by <span className="text-foreground font-medium">Backend formatter</span>, and <span className="line-through text-muted-foreground/50">ESLint (Node.js)</span> is renamed to <span className="text-foreground font-medium">Linter</span>.
+                  </p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">Why:</span> The backend pack targets Laravel, Express, NestJS, Django, Go, and more. Extras should not assume the user's runtime. The new guides cover Prettier, Pint, Black, and gofmt (formatter) and ESLint, PHPStan, Flake8, and golangci-lint (linter).
+                  </p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">How to use:</span> Toggle <span className="font-mono text-foreground">Backend formatter (config file)</span> or <span className="font-mono text-foreground">Linter (config file)</span> in the Extras section. The downloaded <code className="font-mono text-foreground">FORMATTER.md</code> and <code className="font-mono text-foreground">LINTER.md</code> contain setup instructions for every major stack — delete the sections that don't apply.
+                  </p>
+                </div>
+              </div>
+
+              {/* Change 4 */}
+              <div className="rounded-lg border border-border bg-surface/50 p-4 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                  <h4 className="font-mono text-xs font-bold text-foreground">Framework-agnostic backend rule block</h4>
+                </div>
+                <div className="pl-3.5 space-y-1.5">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">What:</span> The backend rule block no longer contains any Laravel or PHP-specific references. Four new rule categories were added.
+                  </p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">Why:</span> A backend rules file should be droppable into any project — Laravel, Express, Django, NestJS, Go — without requiring manual cleanup of irrelevant sections.
+                  </p>
+                  <div className="mt-2 grid grid-cols-2 gap-1.5">
+                    {[
+                      { label: "REST API conventions", desc: "Resource naming, HTTP methods, status codes, response shape" },
+                      { label: "Env variable hygiene", desc: "No hardcoded secrets, validate at startup, never log values" },
+                      { label: "Logging standards", desc: "Structured JSON, request_id in every line, never log PII" },
+                      { label: "Query safety", desc: "Parameterized queries only, N+1 prevention, pagination required" },
+                    ].map((item) => (
+                      <div key={item.label} className="rounded border border-primary/20 bg-primary/5 px-3 py-2">
+                        <div className="font-mono text-[11px] font-semibold text-primary">{item.label}</div>
+                        <div className="text-[10px] text-muted-foreground mt-0.5 leading-relaxed">{item.desc}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* v1 */}
+          <div className="border-t border-border/40 pt-8">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="font-mono text-xs font-bold text-success border border-success/40 rounded px-2 py-0.5">v1.0</span>
+              <h3 className="text-base font-semibold">Frontend Pack</h3>
+              <span className="font-mono text-[10px] text-muted-foreground">Initial release</span>
+            </div>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Frontend pack shipping with rules for HTML, CSS, JavaScript, images, fonts, network, Web Vitals, design principles, and the three-level self-healing pipeline. Extras: Husky, ESLint, Stylelint, Prettier, Lighthouse CI.
+            </p>
           </div>
         </div>
       ),
