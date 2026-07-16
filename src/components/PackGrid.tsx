@@ -9,6 +9,7 @@ interface Props {
 const ICONS: Record<string, string> = {
   layout: "▢",
   server: "▤",
+  layers: "≣",
   cloud: "☁",
   smartphone: "▯",
 };

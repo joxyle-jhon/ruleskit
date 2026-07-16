@@ -107,8 +107,15 @@ export async function promptForStack(): Promise<DetectedStack> {
     // 1. Prompt for Pack
     console.log("  [1] Frontend (React, Vue, Next.js, etc.)");
     console.log("  [2] Backend (Express, NestJS, Laravel, Go, Python, etc.)");
+    console.log("  [3] Full-Stack (Next.js, Nuxt, Laravel, SvelteKit, etc.)");
     const packAnswer = await rl.question("\n  Select pack [1]: ");
-    const packId = packAnswer.trim() === "2" ? "backend" : "frontend";
+    const packChoice = packAnswer.trim();
+    const packId =
+      packChoice === "2"
+        ? "backend"
+        : packChoice === "3"
+          ? "fullstack"
+          : "frontend";
 
     // 2. Prompt for Framework
     console.log(`\n  Select framework/variant for ${packId}:`);
@@ -121,7 +128,7 @@ export async function promptForStack(): Promise<DetectedStack> {
         { id: "sveltekit", label: "SvelteKit" },
         { id: "angular", label: "Angular" },
       ];
-    } else {
+    } else if (packId === "backend") {
       frameworks = [
         { id: "agnostic", label: "Framework-agnostic" },
         { id: "laravel", label: "Laravel" },
@@ -129,6 +136,14 @@ export async function promptForStack(): Promise<DetectedStack> {
         { id: "nestjs", label: "NestJS" },
         { id: "fastify", label: "Fastify" },
         { id: "django", label: "Django" },
+      ];
+    } else {
+      frameworks = [
+        { id: "agnostic", label: "Framework-agnostic" },
+        { id: "nextjs", label: "Next.js (React)" },
+        { id: "nuxt", label: "Nuxt (Vue)" },
+        { id: "sveltekit", label: "SvelteKit" },
+        { id: "laravel", label: "Laravel (PHP)" },
       ];
     }
 
