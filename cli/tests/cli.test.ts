@@ -51,6 +51,25 @@ describe("ruleskit CLI integration tests", () => {
     }
   });
 
+  test("successfully generates fullstack pack rules", () => {
+    const tempDir = mkdtempSync(join(tmpdir(), "ruleskit-test-"));
+    try {
+      const result = runCLI(["--pack", "fullstack", "--framework", "agnostic", "--format", "cursorrules"], tempDir);
+      
+      assert.strictEqual(result.status, 0);
+      assert.match(result.stdout, /Done!/);
+      
+      const expectedFile = join(tempDir, ".cursorrules");
+      assert.ok(existsSync(expectedFile), ".cursorrules should exist");
+      
+      const content = readFileSync(expectedFile, "utf-8");
+      assert.match(content, /ruleskit — Full-Stack Rules/);
+      assert.match(content, /Frontend Excellence/);
+      assert.match(content, /Backend Excellence/);
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
   test("successfully generates CLAUDE.md when format is claude", () => {
     const tempDir = mkdtempSync(join(tmpdir(), "ruleskit-test-"));
     try {
