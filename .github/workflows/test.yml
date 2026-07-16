@@ -31,4 +31,6 @@ jobs:
       - name: Run CLI test suite
         run: |
           cd cli
+          node -v
+          npm -v
           npm test
