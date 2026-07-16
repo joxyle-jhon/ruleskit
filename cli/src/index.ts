@@ -4,6 +4,7 @@ import { dirname, resolve } from "node:path";
 import { generate, getPack, getStablePacks } from "./generator.js";
 import type { OutputFormat } from "./types.js";
 import { detectStack, promptForStack } from "./detector.js";
+import { runDoctor } from "./doctor.js";
 
 const VALID_FORMATS: OutputFormat[] = ["cursorrules", "mdc", "skill", "claude"];
 
@@ -68,9 +69,41 @@ async function main() {
   const command = positionals[0] ?? "init";
 
   if (command === "doctor") {
-    console.log("Doctor command execution...");
-    // To be implemented in Section 2
-    process.exit(0);
+    console.log(`
+  ╔══════════════════════════════════════════╗
+  ║  ruleskit doctor — verifying setup       ║
+  ╚══════════════════════════════════════════╝
+    `);
+
+    const results = runDoctor(process.cwd());
+    let hasFailures = false;
+
+    for (const r of results) {
+      if (r.status === "pass") {
+        console.log(`  ✓ ${r.title}\n    ${r.message}\n`);
+      } else if (r.status === "warn") {
+        console.log(`  ⚠ ${r.title}\n    ${r.message}`);
+        if (r.fix) {
+          console.log(`    💡 Fix: ${r.fix}`);
+        }
+        console.log();
+      } else {
+        console.log(`  ✗ ${r.title}\n    ${r.message}`);
+        if (r.fix) {
+          console.log(`    💡 Fix: ${r.fix}`);
+        }
+        console.log();
+        hasFailures = true;
+      }
+    }
+
+    if (hasFailures) {
+      console.log("  ✗ doctor: Verification failed. Some required rule configurations are missing or broken.\n");
+      process.exit(1);
+    } else {
+      console.log("  ✔ doctor: Verification passed! Your project rules setup is fully functional.\n");
+      process.exit(0);
+    }
   }
 
   if (command !== "init") {
