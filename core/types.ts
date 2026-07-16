@@ -31,7 +31,7 @@ export interface PackConfig {
   extras: ExtraOption[];
 }
 
-export type OutputFormat = "cursorrules" | "mdc" | "skill";
+export type OutputFormat = "cursorrules" | "mdc" | "skill" | "claude";
 
 export interface GeneratedFile {
   filename: string;

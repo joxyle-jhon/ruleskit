@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "ruleskit: running backend pre-commit checks..."
+
+# PHP projects — run Pint if available
+if [ -f "vendor/bin/pint" ]; then
+  ./vendor/bin/pint --dirty
+  if [ $? -ne 0 ]; then
+    echo "ruleskit ✗ PHP Pint formatting failed — fix issues and re-commit"
+    exit 1
+  fi
+fi
+
+# Node.js projects — run lint-staged if available
+if [ -f ".lintstagedrc.js" ] || [ -f "package.json" ]; then
+  npx lint-staged
+  if [ $? -ne 0 ]; then
+    echo "ruleskit ✗ lint-staged failed — fix issues and re-commit"
+    exit 1
+  fi
+fi
+
+echo "ruleskit ✓ pre-commit checks passed"

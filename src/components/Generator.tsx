@@ -5,8 +5,9 @@ import type { OutputFormat, GeneratedFile, PackConfig } from "@/core/types";
 
 const FORMAT_OPTIONS: { id: OutputFormat; label: string; ext: string }[] = [
   { id: "cursorrules", label: "Cursor", ext: ".cursorrules" },
-  { id: "mdc", label: "Cursor Rules", ext: ".mdc" },
+  { id: "mdc", label: "Windsurf", ext: ".mdc" },
   { id: "skill", label: "Agent Skill", ext: "SKILL.md" },
+  { id: "claude", label: "Claude Code", ext: "CLAUDE.md" },
 ];
 
 interface Props {
@@ -288,16 +289,17 @@ function ManualSetup({
           <div className="rounded-md border border-border/60 bg-background/60 px-4 py-3 space-y-2">
             <p className="text-xs font-semibold text-foreground mb-2">File placement cheatsheet</p>
             <div className="space-y-1 font-mono text-[11px] text-muted-foreground">
-              <div><span className="text-primary">.cursorrules</span> → project root (auto-loaded by Cursor)</div>
-              <div><span className="text-primary">.cursor/rules/*.mdc</span> → project root (Cursor modular rules)</div>
-              <div><span className="text-primary">SKILL.md</span> → project root (paste into Antigravity / custom agent system prompt)</div>
-              <div><span className="text-primary">eslint.config.js</span> → project root (replaces existing ESLint config)</div>
-              <div><span className="text-primary">.stylelintrc.js</span> → project root</div>
-              <div><span className="text-primary">.prettierrc.js</span> → project root</div>
-              <div><span className="text-primary">.lintstagedrc.js</span> → project root</div>
-              <div><span className="text-primary">.husky/pre-commit</span> → run <code className="text-foreground">npx husky init</code> first, then replace the file</div>
-              <div><span className="text-primary">.lighthouserc.json</span> → project root</div>
-            </div>
+                <div><span className="text-primary">.cursorrules</span> → project root (auto-loaded by Cursor)</div>
+                <div><span className="text-primary">.cursor/rules/*.mdc</span> → project root (Windsurf modular rules)</div>
+                <div><span className="text-primary">SKILL.md</span> → project root (paste into your agent system prompt)</div>
+                <div><span className="text-primary">CLAUDE.md</span> → project root (auto-loaded by Claude Code terminal agent)</div>
+                <div><span className="text-primary">eslint.config.js</span> → project root (replaces existing ESLint config)</div>
+                <div><span className="text-primary">.stylelintrc.js</span> → project root</div>
+                <div><span className="text-primary">.prettierrc.js</span> → project root</div>
+                <div><span className="text-primary">.lintstagedrc.js</span> → project root</div>
+                <div><span className="text-primary">.husky/pre-commit</span> → run <code className="text-foreground">npx husky init</code> first, then replace the file</div>
+                <div><span className="text-primary">.lighthouserc.json</span> → project root</div>
+              </div>
           </div>
         </div>
       )}

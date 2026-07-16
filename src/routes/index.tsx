@@ -190,8 +190,8 @@ function Home() {
             </div>
             
             <span className="flex items-center gap-1.5">
-              <span className="text-primary font-bold">ICEBERG //</span> 
-              v1 — frontend pack ships today
+              <span className="text-primary font-bold">ICEBERG //</span>{" "}
+              v2 — backend pack ships today
             </span>
           </div>
 
@@ -295,21 +295,37 @@ function Home() {
       {/* Coverage */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="text-2xl font-bold">What's covered (frontend pack)</h2>
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          <h2 className="text-2xl font-bold">What's covered</h2>
+          <div className="mt-4 flex gap-2 font-mono text-xs">
+            <span className="rounded border border-success/40 bg-success/5 px-2 py-0.5 text-success">frontend pack</span>
+            <span className="rounded border border-primary/40 bg-primary/5 px-2 py-0.5 text-primary">backend pack</span>
+          </div>
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {[
-              "Performance",
-              "Design",
-              "Accessibility",
-              "Git Hooks",
-              "Linting",
-              "Lighthouse CI",
-            ].map((label) => (
+              { label: "Performance", tag: "both" },
+              { label: "Security", tag: "backend" },
+              { label: "API Design", tag: "backend" },
+              { label: "Database", tag: "backend" },
+              { label: "Caching", tag: "backend" },
+              { label: "Error Handling", tag: "backend" },
+              { label: "Design", tag: "frontend" },
+              { label: "Accessibility", tag: "frontend" },
+              { label: "Git Hooks", tag: "both" },
+              { label: "Linting", tag: "both" },
+              { label: "Lighthouse CI", tag: "frontend" },
+              { label: "Architecture", tag: "backend" },
+            ].map((item) => (
               <div
-                key={label}
-                className="rounded-md border border-border bg-surface px-4 py-6 text-center text-sm font-mono text-muted-foreground hover:border-primary hover:text-foreground transition"
+                key={item.label}
+                className={`rounded-md border bg-surface px-4 py-6 text-center text-sm font-mono transition ${
+                  item.tag === "backend"
+                    ? "border-primary/30 text-primary hover:border-primary hover:text-foreground"
+                    : item.tag === "frontend"
+                      ? "border-success/30 text-success hover:border-success hover:text-foreground"
+                      : "border-border text-muted-foreground hover:border-primary hover:text-foreground"
+                }`}
               >
-                {label}
+                {item.label}
               </div>
             ))}
           </div>
@@ -323,8 +339,8 @@ function Home() {
           <div className="mt-10 flex flex-wrap items-center gap-3 font-mono text-sm">
             {[
               { label: "v1 Frontend", state: "shipped" },
-              { label: "v2 Backend", state: "next" },
-              { label: "v3 DevOps", state: "later" },
+              { label: "v2 Backend", state: "shipped" },
+              { label: "v3 DevOps", state: "next" },
               { label: "v4 Mobile", state: "later" },
             ].map((m, i, arr) => (
               <span key={m.label} className="flex items-center gap-3">
@@ -357,7 +373,15 @@ function Home() {
               href="https://roadmap.sh/frontend-performance-best-practices"
               className="text-foreground hover:text-primary"
             >
-              roadmap.sh/frontend-performance-best-practices
+              roadmap.sh/frontend
+            </a>
+            {" · "}
+            Backend rules sourced from{" "}
+            <a
+              href="https://roadmap.sh/backend"
+              className="text-foreground hover:text-primary"
+            >
+              roadmap.sh/backend
             </a>
           </div>
           <div className="flex gap-4">
