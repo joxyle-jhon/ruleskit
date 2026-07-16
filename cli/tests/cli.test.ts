@@ -70,8 +70,6 @@ describe("ruleskit CLI integration tests", () => {
       rmSync(tempDir, { recursive: true, force: true });
     }
   });
-
-
   test("successfully generates CLAUDE.md when format is claude", () => {
     const tempDir = mkdtempSync(join(tmpdir(), "ruleskit-test-"));
     try {
