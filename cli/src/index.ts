@@ -27,7 +27,7 @@ async function main() {
 
   // ── Version ──────────────────────────────────────────────────────────
   if (values.version) {
-    console.log("ruleskit v1.0.0");
+    console.log("ruleskit v1.1.0");
     process.exit(0);
   }
 
