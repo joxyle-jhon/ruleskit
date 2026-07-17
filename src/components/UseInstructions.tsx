@@ -4,12 +4,24 @@ const CLI_EXAMPLES = [
     cmd: "npx ruleskit init",
   },
   {
-    label: "Next.js + Cursor .mdc rules only",
+    label: "Frontend — Next.js + Cursor .mdc rules only",
     cmd: "npx ruleskit init --pack frontend --framework nextjs --format mdc --no-extras",
   },
   {
-    label: "All formats + lint/husky extras",
+    label: "Frontend — All formats + lint/husky extras",
     cmd: "npx ruleskit init --pack frontend --framework nextjs --format all",
+  },
+  {
+    label: "Backend — Laravel with CLAUDE.md for Claude Code",
+    cmd: "npx ruleskit init --pack backend --framework laravel --format claude --extras husky",
+  },
+  {
+    label: "Backend — Framework-agnostic, all formats",
+    cmd: "npx ruleskit init --pack backend --framework agnostic --format all --extras husky,linter",
+  },
+  {
+    label: "Full-Stack — Laravel, SKILL.md for agent pipelines",
+    cmd: "npx ruleskit init --pack fullstack --framework laravel --format skill --extras husky,linter,prettier",
   },
   {
     label: "Rules only, no config files",
@@ -18,9 +30,10 @@ const CLI_EXAMPLES = [
 ] as const;
 
 const OUTPUTS = [
-  { file: ".cursorrules", desc: "Legacy Cursor project rules" },
+  { file: ".cursorrules", desc: "Cursor project rules" },
   { file: ".cursor/rules/<pack>.mdc", desc: "Cursor rules with globs" },
   { file: "SKILL.md", desc: "Agent skill format" },
+  { file: "CLAUDE.md", desc: "Claude Code terminal format" },
 ] as const;
 
 const EXTRAS = [
@@ -30,6 +43,8 @@ const EXTRAS = [
   ".prettierrc.js",
   ".lintstagedrc.js",
   ".lighthouserc.json",
+  "LINTER.md",
+  "FORMATTER.md",
 ] as const;
 
 export function UseInstructions() {
@@ -49,8 +64,10 @@ export function UseInstructions() {
             <h3 className="font-mono text-sm font-semibold text-primary">01 — Website</h3>
             <ol className="mt-4 space-y-3 text-sm text-muted-foreground list-decimal list-inside">
               <li>
-                Pick a pack above ( <span className="text-foreground font-mono">frontend</span> is
-                stable today)
+                Pick a pack:{" "}
+                <span className="text-foreground font-mono">frontend</span>,{" "}
+                <span className="text-foreground font-mono">backend</span>, or{" "}
+                <span className="text-foreground font-mono">fullstack</span>
               </li>
               <li>Choose format, framework, and extras</li>
               <li>

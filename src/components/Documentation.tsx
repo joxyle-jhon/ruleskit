@@ -261,13 +261,13 @@ export function Documentation() {
                 <tbody className="divide-y divide-border/60">
                   <tr>
                     <td className="px-3 py-2 text-foreground font-semibold">-p, --pack</td>
-                    <td className="px-3 py-2">frontend, backend, mobile, devops</td>
+                    <td className="px-3 py-2">frontend, backend, fullstack</td>
                     <td className="px-3 py-2">frontend</td>
                     <td className="px-3 py-2">Discipline pack ruleset template</td>
                   </tr>
                   <tr>
                     <td className="px-3 py-2 text-foreground font-semibold">-f, --framework</td>
-                    <td className="px-3 py-2">agnostic, nextjs, nuxt, sveltekit, angular</td>
+                    <td className="px-3 py-2">agnostic, nextjs, nuxt, sveltekit, angular, laravel, express, nestjs, fastify, django</td>
                     <td className="px-3 py-2">agnostic</td>
                     <td className="px-3 py-2">Add framework specific hooks / rules</td>
                   </tr>
@@ -354,6 +354,16 @@ export function Documentation() {
                   $ npx ruleskit init --pack frontend --format skill
                 </code>
               </div>
+
+              <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
+                <h4 className="font-mono text-xs font-bold text-foreground">6. Full-Stack — Laravel + Next.js combined rules</h4>
+                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                  Full-stack rules bridging UI performance, API design, security, and database hygiene into a single output file.
+                </p>
+                <code className="mt-2 block rounded bg-background/60 px-3 py-2 font-mono text-[11px] text-foreground">
+                  $ npx ruleskit init --pack fullstack --framework laravel --format skill --extras husky,linter,prettier
+                </code>
+              </div>
             </div>
           </div>
         </div>
@@ -367,8 +377,49 @@ export function Documentation() {
       subtitle: "What's new, what changed, and why",
       content: (
         <div className="space-y-10">
-          {/* v2 release */}
+          {/* v1.1 release */}
           <div>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="font-mono text-xs font-bold text-primary border border-primary/40 rounded px-2 py-0.5">v1.1</span>
+              <h3 className="text-base font-semibold">Full-Stack Pack + TypeScript Fix</h3>
+              <span className="font-mono text-[10px] text-muted-foreground">2026-07-17</span>
+            </div>
+
+            <div className="space-y-4">
+              <div className="rounded-lg border border-border bg-surface/50 p-4 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                  <h4 className="font-mono text-xs font-bold text-foreground">New pack — <code className="text-primary">fullstack</code></h4>
+                </div>
+                <div className="pl-3.5 space-y-1.5">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">What:</span> The fullstack pack combines frontend UI performance rules with backend API design, security, database hygiene, and AI self-healing into one output file.
+                  </p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">Frameworks:</span> agnostic, Next.js, Nuxt, SvelteKit, Laravel.
+                  </p>
+                  <code className="mt-1 block rounded bg-background/60 px-3 py-2 font-mono text-[11px] text-foreground">
+                    $ npx ruleskit init --pack fullstack --framework laravel --format skill
+                  </code>
+                </div>
+              </div>
+
+              <div className="rounded-lg border border-border bg-surface/50 p-4 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                  <h4 className="font-mono text-xs font-bold text-foreground">Fullstack extras: husky, linter, prettier</h4>
+                </div>
+                <div className="pl-3.5">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-foreground font-medium">What:</span> The fullstack pack now supports extras — <code className="font-mono text-foreground">husky</code> (pre-commit hook), <code className="font-mono text-foreground">linter</code> (LINTER.md guide), and <code className="font-mono text-foreground">prettier</code> (.prettierrc.js). These reuse the existing backend and frontend config files.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* v2 release */}
+          <div className="border-t border-border/40 pt-8">
             <div className="flex items-center gap-3 mb-5">
               <span className="font-mono text-xs font-bold text-primary border border-primary/40 rounded px-2 py-0.5">v2.0</span>
               <h3 className="text-base font-semibold">Backend Pack + Claude Code</h3>
