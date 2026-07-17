@@ -6,7 +6,11 @@ import frontendConfig from "../packs/frontend/pack.config.ts";
 import backendConfig from "../packs/backend/pack.config.ts";
 import fullstackConfig from "../packs/fullstack/pack.config.ts";
 
-const packs: PackConfig[] = [frontendConfig, backendConfig, fullstackConfig];
+const packs: PackConfig[] = [
+  frontendConfig as PackConfig,
+  backendConfig as PackConfig,
+  fullstackConfig as PackConfig,
+];
 
 const FORMAT_META: Record<OutputFormat, { template: string; filename: string; language: string }> =
   {
@@ -158,6 +162,33 @@ function generateExtras(
         filename: ".lighthouserc.json",
         content: registry.getConfigFile(packId, "lighthouse/budget.json"),
         language: "json",
+      });
+    }
+  }
+
+  if (packId === "fullstack") {
+    if (extras.includes("husky")) {
+      // Reuse the backend hook — it handles both PHP (Pint) + Node (lint-staged)
+      files.push({
+        filename: ".husky/pre-commit",
+        content: registry.getConfigFile("backend", "husky/pre-commit"),
+        language: "bash",
+      });
+    }
+
+    if (extras.includes("linter")) {
+      files.push({
+        filename: "LINTER.md",
+        content: registry.getConfigFile("backend", "linter/linter.md"),
+        language: "markdown",
+      });
+    }
+
+    if (extras.includes("prettier")) {
+      files.push({
+        filename: ".prettierrc.js",
+        content: registry.getConfigFile("frontend", "prettier/base.js"),
+        language: "javascript",
       });
     }
   }
