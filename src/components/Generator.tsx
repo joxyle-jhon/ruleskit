@@ -192,23 +192,23 @@ export function Generator({ pack }: Props) {
       </Section>
 
       {/* Step 5: Get your files */}
-      <Section step="05" title="Get your files" hint="Download the zip or copy the CLI command">
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <button
-            onClick={downloadZip}
-            className="flex-1 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90 glow-primary"
-          >
-            ↓ Download .zip
-          </button>
+      <Section step="05" title="Get your files" hint="Copy the CLI command or download the zip">
+        <div className="overflow-x-auto rounded-md border border-border bg-background/60 px-4 py-3 font-mono text-xs text-muted-foreground">
+          <span className="text-primary">$</span> {cliCmd}
+        </div>
+        <div className="mt-3 flex flex-col gap-3 sm:flex-row">
           <button
             onClick={() => copy(cliCmd, "cli")}
             className="flex-1 rounded-md border border-border-strong bg-surface px-5 py-3 text-sm font-mono text-foreground transition hover:bg-surface-elevated"
           >
             {copied === "cli" ? "✓ copied!" : "$ copy CLI command"}
           </button>
-        </div>
-        <div className="mt-3 overflow-x-auto rounded-md border border-border bg-background/60 px-4 py-3 font-mono text-xs text-muted-foreground">
-          <span className="text-primary">$</span> {cliCmd}
+          <button
+            onClick={downloadZip}
+            className="flex-1 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90 glow-primary"
+          >
+            ↓ Download .zip
+          </button>
         </div>
       </Section>
 
